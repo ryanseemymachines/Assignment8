@@ -1,0 +1,20 @@
+.header{
+    padding:20px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--color-darker);
+    color: var(--color-lighter);
+}
+
+.modalTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.modalTitle h1{
+    margin: 0;
+}

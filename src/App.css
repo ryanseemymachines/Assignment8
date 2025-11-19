@@ -1,42 +1,41 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+:root {
+  --color-lighter: rgb(255, 235, 235);
+  --color-light: rgb(255, 150, 150);
+  --color-main: rgb(199, 53, 53);
+  --color-dark: rgb(180, 59, 59);
+  --color-darker: rgb(120, 30, 30);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.dark {
+  background: black;
+  color: white;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.light {
+  background: white;
+  color: black;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.navBar {
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 15px;
+  background-color: var(--color-light);
+  transition: all 0.4s ease;
 }
 
-.card {
-  padding: 2em;
+.navBar button {
+  border: none;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 1.2em;
+  padding: 20px 25px;
+  background-color: var(--color-main);
+  color: var(--color-lighter);
+  transition: all 0.4s;
 }
 
-.read-the-docs {
-  color: #888;
+.navBar button:hover {
+  transform: scale(1.01);
 }
