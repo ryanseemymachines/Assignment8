@@ -1,6 +1,10 @@
-.btn{
-    font-size: 1em;
-    padding:10px;
-    border:none;
-    border-radius: 16px;
+.btn {
+  font-size: 1em;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 16px;
+}
+
+.btn:hover {
+  cursor: pointer;
 }

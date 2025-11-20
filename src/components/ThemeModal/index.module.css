@@ -4,20 +4,19 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.208);
+  background-color: rgba(0, 0, 0, 0.356);
   color:black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 10;
 }
 
-.modalContent {
+.modalSidebar {
+  float:right;
   background: #fff;
   padding:25px;
-  border-radius: 12px;
-  max-width: 90%;
-  max-height: 90vh;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  width: 18%;
+  height: 100vh;
   overflow-y: auto;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }

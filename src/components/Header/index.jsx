@@ -1,43 +1,65 @@
 import { useState, useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
+import ThemePicker from "../ThemePicker";
 import ThemeModal from "../ThemeModal";
 import Button from "../Button";
 import styles from "./index.module.css";
 
 const Header = () => {
-  const { toggleTheme, setColourPalete , colorPalettes,darkMode } = useContext(ThemeContext);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { darkMode, currentPalette, setColourPalette, toggleTheme } =
+    useContext(ThemeContext);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [previousPalette, setPreviousPalette] = useState(null);
+
+  const openModal = () => {
+    if (darkMode) {
+      alert("Turn off dark mode before changing the theme.");
+      return;
+    }
+    setPreviousPalette(currentPalette);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setColourPalette(previousPalette);
+    setIsModalOpen(false);
+  };
+
+  const handlePickerClose = (shouldSave) => {
+    if (!shouldSave) {
+      setColourPalette(previousPalette);
+    }
+    setIsModalOpen(false);
+  };
+
   return (
     <header className={styles.header}>
-      <p>Current theme: {darkMode ? "dark" : "light"}</p>
-      <Button type="button" onClick={toggleTheme} title="DarkMode"></Button>
-      <Button type="button" onClick={openModal} title="Select Theme"></Button>
+      <Button
+        className={styles.headerBtn}
+        type="button"
+        onClick={toggleTheme}
+        title="DarkMode"
+      />
+      <Button
+        className={styles.headerBtn}
+        type="button"
+        onClick={openModal}
+        title="Change Theme"
+      />
+
       <ThemeModal isOpen={isModalOpen} onClose={closeModal}>
         <div className={styles.modalTitle}>
-          <h1>Choose a colour: </h1>
-        <Button type="button" onClick={closeModal} title="X"/>
+          <h1>Choose a colour</h1>
+          <Button
+            className={styles.closeBtn}
+            type="button"
+            onClick={closeModal}
+            title="X"
+          />
         </div>
-        
-        {colorPalettes.map((color, index) => {
-          return (
-            <button
-              key={index}
-              onClick={() => setColourPalete(index)}
-              style={{
-                width: "40px",
-                height: "40px",
-                borderRadius: "50%",
-                backgroundColor: color[2],
-                cursor: "pointer",
-                marginRight: "20px",
-                border: "1px solid #ccc",
-              }}
-            ></button>
-          );
-        })}
+
+        <ThemePicker onClose={handlePickerClose} />
       </ThemeModal>
     </header>
   );

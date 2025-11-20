@@ -28,7 +28,12 @@ const withLoading = (WrappedComponent, url) => {
       fetchData();
     }, [url]);
 
-    if (loading) return <div><Loader /></div>;
+    if (loading)
+      return (
+        <div>
+          <Loader />
+        </div>
+      );
     if (error) return <div>{error.message}</div>;
     if (data.length === 0) return <div>No data found.</div>;
 

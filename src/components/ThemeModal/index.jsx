@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
 import styles from "./index.module.css";
 
 const ThemeModal = ({ isOpen, onClose, children }) => {
@@ -7,7 +5,7 @@ const ThemeModal = ({ isOpen, onClose, children }) => {
 
   return (
     <div className={styles.modalBackdrop} onClick={onClose}>
-      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+      <div className={styles.modalSidebar} onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
     </div>
