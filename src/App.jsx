@@ -7,12 +7,18 @@ import Footer from "./components/Footer";
 import "./App.css";
 
 const Dashboard = lazy(() => import("./components/Dashboard"));
+const EmployeeList = lazy(() => import("./components/EmployeeList"));
 const UserProfile = lazy(() => import("./components/UserProfile"));
 
 import EmployeeList from "./components/EmployeeList";
 import Button from "./components/Button";
 const EmployeeListWithLoading = withLoading(
   EmployeeList,
+  "https://6580190d6ae0629a3f54561f.mockapi.io/api/v1/employee"
+);
+
+const UserProfileWithLoading = withLoading(
+  UserProfile,
   "https://6580190d6ae0629a3f54561f.mockapi.io/api/v1/employee"
 );
 
@@ -46,7 +52,7 @@ const App = () => {
           <Suspense fallback={<Loader />}>
             {activeTab === "dashboard" && <Dashboard />}
             {activeTab === "employees" && <EmployeeListWithLoading />}
-            {activeTab === "profile" && <UserProfile />}
+            {activeTab === "profile" && <UserProfileWithLoading />}
           </Suspense>
         </div>
 
