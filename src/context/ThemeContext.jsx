@@ -16,25 +16,12 @@ export const ThemeProvider = ({ children }) => {
 
   const setColourPalette = (index) => {
     setCurrentPalette(index);
-
-    if (darkMode) {
-      setPreviousPalette(index);
-      return;
-    }
-    applyPalette(colorPalettes[index]);
   };
 
   const toggleTheme = () => {
     setDarkMode((prev) => {
-      const nextMode = !prev;
-
-      if (nextMode) {
-        setPreviousPalette(currentPalette);
-      } else {
-        applyPalette(colorPalettes[previousPalette]);
-      }
-
-      return nextMode;
+      if (!prev) setPreviousPalette(currentPalette);
+      return !prev;
     });
   };
 
@@ -57,6 +44,8 @@ export const ThemeProvider = ({ children }) => {
         colorPalettes,
         setColourPalette,
         currentPalette,
+        previousPalette,
+        setPreviousPalette,
       }}
     >
       {children}

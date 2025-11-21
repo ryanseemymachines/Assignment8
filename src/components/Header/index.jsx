@@ -6,11 +6,16 @@ import Button from "../Button";
 import styles from "./index.module.css";
 
 const Header = () => {
-  const { darkMode, currentPalette, setColourPalette, toggleTheme } =
-    useContext(ThemeContext);
+  const {
+    previousPalette,
+    setPreviousPalette,
+    darkMode,
+    currentPalette,
+    setColourPalette,
+    toggleTheme,
+  } = useContext(ThemeContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [previousPalette, setPreviousPalette] = useState(null);
 
   const openModal = () => {
     if (darkMode) {

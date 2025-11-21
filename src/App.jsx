@@ -1,6 +1,6 @@
 import { useState, Suspense, lazy } from "react";
-import withLoading from "./hoc/withLoading";
 import { ThemeProvider } from "./context/ThemeContext";
+import withLoading from "./hoc/withLoading";
 import Header from "./components/Header";
 import Loader from "./components/Loader";
 import Footer from "./components/Footer";
@@ -10,8 +10,8 @@ const Dashboard = lazy(() => import("./components/Dashboard"));
 const EmployeeList = lazy(() => import("./components/EmployeeList"));
 const UserProfile = lazy(() => import("./components/UserProfile"));
 
-import EmployeeList from "./components/EmployeeList";
 import Button from "./components/Button";
+
 const EmployeeListWithLoading = withLoading(
   EmployeeList,
   "https://6580190d6ae0629a3f54561f.mockapi.io/api/v1/employee"
