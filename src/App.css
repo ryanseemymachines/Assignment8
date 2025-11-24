@@ -28,35 +28,3 @@
 .light {
   background: white;
 }
-
-.navBar {
-  padding: 20px;
-  display: flex;
-  justify-content: space-evenly;
-  gap: 15px;
-  background-color: var(--color-light);
-  transition: all 0.4s ease;
-}
-
-.navBtn {
-  border: none;
-  width: 100%;
-  border-radius: 10px;
-  font-size: 1.2em;
-  padding: 20px 25px;
-  background-color: var(--color-main);
-  color: var(--color-lighter);
-  transition: all 0.4s;
-}
-
-.navBtn:hover {
-  transform: scale(1.01);
-  color: var(--color-darker);
-  background-color: var(--color-lighter);
-}
-
-.activeTab {
-  color: var(--color-darker);
-  background-color: var(--color-lighter);
-  box-shadow: 0 3px 20px var(--color-darker);
-}

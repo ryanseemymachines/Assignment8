@@ -3,12 +3,13 @@ import Loader from "../components/Loader";
 
 const withLoading = (WrappedComponent, url) => {
   return (props) => {
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false); 
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
       const fetchData = async () => {
+        setLoading(true);
         try {
           const res = await fetch(url);
 
@@ -21,17 +22,14 @@ const withLoading = (WrappedComponent, url) => {
         } catch (err) {
           setError(err);
         } finally {
-          setLoading(false);
+          setLoading(false); 
         }
       };
 
       fetchData();
     }, [url]);
 
-    if (loading)
-      return (
-          <Loader />
-      );
+    if (loading) return <Loader />;
     if (error) return <div>{error.message}</div>;
     if (data.length === 0) return <div>No data found.</div>;
 
