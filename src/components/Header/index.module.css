@@ -1,0 +1,51 @@
+.header {
+  padding: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--color-darker);
+  color: var(--color-lighter);
+}
+
+.modalTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.modalTitle h1 {
+  margin: 0;
+}
+
+.closeBtn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-size: 1.2em;
+  background-color: black;
+  border-radius: 50%;
+  color: rgb(255, 255, 255);
+}
+
+.closeBtn:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.662);
+}
+
+.headerBtn {
+  background-color: var(--color-lighter);
+  color: var(--color-darker);
+  font-weight: 600;
+  transition: all 0.4s ease;
+}
+
+.headerBtn:hover {
+  background-color: var(--color-main);
+  color: var(--color-lighter);
+  box-shadow: 0 0 12px var(--color-lighter);
+}

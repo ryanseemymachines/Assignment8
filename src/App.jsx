@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, Suspense, lazy } from "react";
+import { ThemeProvider } from "./context/ThemeContext";
+import withLoading from "./hoc/withLoading";
+import ComponentLoader from "./components/ComponentLoader";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const Dashboard = lazy(() => import("./components/Dashboard"));
+
+const EmployeeList = lazy(() => import("./components/EmployeeList"));
+const EmployeeListWithLoading = withLoading(
+  EmployeeList,
+  "https://6580190d6ae0629a3f54561f.mockapi.io/api/v1/employee"
+);
+
+const UserProfile = lazy(() => import("./components/UserProfile"));
+const UserProfileWithLoading = withLoading(
+  UserProfile,
+  "https://6580190d6ae0629a3f54561f.mockapi.io/api/v1/employee"
+);
+
+const App = () => {
+  const [activeTab, setActiveTab] = useState("dashboard");
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <ThemeProvider>
+      <div className="pageWrapper">
+        <Header />
+        <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
+        <div className="contentWrapper">
+          <Suspense fallback={<ComponentLoader />}>
+            {activeTab === "dashboard" && <Dashboard />}
+          </Suspense>
+          <Suspense fallback={<ComponentLoader />}>
+            {activeTab === "employees" && <EmployeeListWithLoading />}
+          </Suspense>
+          <Suspense fallback={<ComponentLoader />}>
+            {activeTab === "profile" && <UserProfileWithLoading />}
+          </Suspense>
+        </div>
 
-export default App
+        <Footer />
+      </div>
+    </ThemeProvider>
+  );
+};
+
+export default App;
